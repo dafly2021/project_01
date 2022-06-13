@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="echarts.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="template-web.js"></script>
+    <script src="axios.js"></script>
+    <style>
+        /* .progress {
+            background-color: pink;
+        }
+        
+        #percent {
+            background-color: green;
+        } */
+    </style>
+</head>
+
+<body>
+    <button id="btn1">发起GET请求</button>
+</body>
+<script>
+    $(function() {
+        $('#btn1').on('click', function() {
+            $.ajax({
+                url: 'http://www.liulongbin.top:3006/api/jsonp?address=北京&location=顺义',
+                dataType: 'jsonp',
+                // 发送到服务器端的参数名称，默认值为 callback
+                jsonp: 'callback',
+                // 自定义的回调函数名称，默认值为 jQueryxxx的格式
+                jsonpCallback: 'suv',
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+        })
+    })
+</script>
+<!-- 设定一个script标签,通过src属性请求服务端的函数，通过查询字符串的方式，传入一个指定函数名success -->
+<!-- <script src="http://www.liulongbin.top:3006/api/jsonp?callback=success"></script> -->
+<!--callback：服务端指定的一个函数名，远程服务端查找客户端传入指定函数名success的函数，并调用。返回客户端需要的数据 -->
+
+</html>
